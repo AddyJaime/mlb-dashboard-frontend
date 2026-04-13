@@ -26,11 +26,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased `}
     >
-      <body className="min-h-full flex flex-col">
-        <SiteHeader/>
-        {children}</body>
+    <body className="min-h-screen flex-col bg-background text-foreground">
+      {/* cosas globales van aqui */}
+  <SiteHeader />
+  {children}
+</body>
     </html>
   );
 }
