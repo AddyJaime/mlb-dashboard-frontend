@@ -1,12 +1,11 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-
 /* Base styles */
 @layer base {
   body {
     @apply bg-gray-100;
-    /* fondo general negro */
+
     overflow-y: auto;
   }
 

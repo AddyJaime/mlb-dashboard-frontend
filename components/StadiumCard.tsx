@@ -1,37 +1,47 @@
+import { MapPin, Users, Calendar } from "lucide-react";
 import Image from "next/image";
 
 export default function StadiumCard() {
   return (
-    <div className="w-full border border-gray-300 rounded-xl overflow-hidden bg-white hover:shadow-lg transition duration-300">
-      
+    <div className="w-full group border border-gray-300 rounded-xl overflow-hidden transition-all duration-300 cursor-pointer hover:shadow-lg hover:border-red-400/50">
       {/* Imagen */}
-      <div className="relative w-full h-45">
+      <div className="relative h-64">
+        {" "}
+        {/* contenedor con altura fija (controla tamaño de la imagen) */}
         <Image
           src="/stadium-hero.jpg"
           alt="Stadium hero image"
-          fill
-          className="object-cover"
+          fill // la imagen ocupa TODO el contenedor
+          className="object-cover transition-transform duration-300 group-hover:scale-105 " // llena sin deformarse (recorta si es necesario)
         />
       </div>
 
       {/* Contenido */}
-      <div className="p-4 text-black">
-
+      <div className="p-4 ">
         {/* Title */}
-        <h2 className="text-lg font-semibold text-gray-900 leading-tight">
+        <h2 className="text-lg font-bold text-black transition group-hover:text-red-600 leading-tight">
           Dodger Stadium
         </h2>
 
         {/* Team */}
-        <p className="text-gray-500 text-xs mt-0.5">
-          Los Angeles Dodgers
-        </p>
+        <p className="text-gray-500 text-sm mt-0.5">Los Angeles Dodgers</p>
 
         {/* Info */}
-        <div className="mt-3 space-y-2 text-xs text-gray-600">
-          <p>📍 Los Angeles, California</p>
-          <p>👥 56,000 capacity</p>
-          <p>📅 Opened 1962</p>
+        <div className="mt-3 space-y-2 text-sm text-gray-600">
+          <p className="flex items-center gap-2">
+            <MapPin className="w-4 h-4 text-red-500" />
+            Los Angeles, California
+          </p>
+
+          <p className="flex items-center gap-2">
+            <Users className="w-4 h-4 text-red-500" />
+            56,000 capacity
+          </p>
+
+          <p className="flex items-center gap-2">
+            <Calendar className="w-4 h-4 text-red-500" />
+            Opened 1962
+          </p>
         </div>
 
         {/* Divider */}
@@ -39,7 +49,6 @@ export default function StadiumCard() {
 
         {/* Bottom Info */}
         <div className="flex justify-between text-xs">
-          
           <div>
             <p className="text-gray-400">Surface</p>
             <p className="font-medium text-gray-900">Grass</p>
@@ -49,11 +58,8 @@ export default function StadiumCard() {
             <p className="text-gray-400">Roof</p>
             <p className="font-medium text-gray-900">Open</p>
           </div>
-
         </div>
-
       </div>
-
     </div>
   );
 }
