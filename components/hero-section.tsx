@@ -1,8 +1,21 @@
+import { Stadium } from "@/types/stadium"
 import { MapPin, TrendingUp, Trophy } from "lucide-react"
 
 
-export default function HeroSection() {
+export default function HeroSection({count, stadiums}: {count: number, stadiums: Stadium[] }) {
+  const avgCapacity = Math.round(stadiums.reduce((acc, stadium)=> {
+    return acc + stadium.capacity
+  }, 0) / stadiums.length)
+
+  const oldestPark = stadiums.reduce((acc, stadium)=> {
+    if (stadium.yearOpen < acc.yearOpen) {
+      return stadium
+    } else {
+      return acc
+    }
+  }, stadiums[0])
   return (
+    
     <section className="w-full bg-gray-50 border-b border-gray-200">
       
       {/* Container */}
@@ -30,7 +43,7 @@ export default function HeroSection() {
               <MapPin/>
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-gray-900">11</h2>
+              <h2 className="text-2xl font-bold text-gray-900">{count}</h2>
               <p className="text-gray-500 text-sm">Active Stadiums</p>
             </div>
           </div>
@@ -41,7 +54,7 @@ export default function HeroSection() {
               <TrendingUp />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-gray-900">43,772</h2>
+              <h2 className="text-2xl font-bold text-gray-900">{avgCapacity.toLocaleString()}</h2>
               <p className="text-gray-500 text-sm">Avg. Capacity</p>
             </div>
           </div>
@@ -52,8 +65,8 @@ export default function HeroSection() {
               <Trophy/>
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-gray-900">1912</h2>
-              <p className="text-gray-500 text-sm">Oldest Park (Fenway)</p>
+              <h2 className="text-2xl font-bold text-gray-900">{oldestPark.yearOpen}</h2>
+              <p className="text-gray-500 text-sm">{oldestPark.name}</p>
             </div>
           </div>
 
