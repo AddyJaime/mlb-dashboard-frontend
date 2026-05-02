@@ -21,6 +21,7 @@ export async function getAllStadiums(): Promise<Stadium[]> {
         capacity: item.capacity,
         yearOpen: item.year_open,
         imageUrl: item.image_url,
+        league: item.league
 
       }
     })

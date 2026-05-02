@@ -25,6 +25,9 @@ export default function StadiumCard({ stadium, isFirst }: StadiumCardProps) {
           suppressHydrationWarning
           className="object-cover transition-transform duration-300 group-hover:scale-105 " // llena sin deformarse (recorta si es necesario)
         />
+        <div className="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+          {stadium.league}
+        </div>
       </div>
 
       {/* Contenido */}

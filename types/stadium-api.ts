@@ -10,4 +10,5 @@ export type StadiumAPI = {
   capacity: number
   year_open: number
   image_url: string
+  league: "AL" | "NL"
 }
