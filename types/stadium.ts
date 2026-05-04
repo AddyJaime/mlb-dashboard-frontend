@@ -12,8 +12,17 @@ export type Stadium = {
   team: string
   city: string
   state: string
+  description: string
   capacity: number
   yearOpen: number
-  imageUrl:string
+  imageUrl: string
   league: "AL" | "NL"
+  latitude: number
+  longitude: number
+  leftFieldFt: number
+  centerFieldFt: number
+  rightFieldFt: number
+  totalGames: number
+  homeWinPercentage: number
+  perfectGames: number
 } 

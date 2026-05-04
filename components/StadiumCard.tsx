@@ -2,6 +2,8 @@ import { MapPin, Users, Calendar } from "lucide-react";
 import { Stadium } from "@/types/stadium";
 import Image from "next/image";
 
+import Link from "next/link";
+
 type StadiumCardProps = {
   stadium: Stadium;
   isFirst: boolean
@@ -9,6 +11,7 @@ type StadiumCardProps = {
 
 export default function StadiumCard({ stadium, isFirst }: StadiumCardProps) {
   return (
+    <Link href={`/stadiums/${stadium.id}`}>
     <div className="w-full group border border-gray-400 rounded-xl overflow-hidden transition-all duration-300 cursor-pointer hover:shadow-lg hover:border-red-400/50">
       {/* Imagen */}
       <div className="relative h-64" suppressHydrationWarning>
@@ -77,5 +80,6 @@ export default function StadiumCard({ stadium, isFirst }: StadiumCardProps) {
         </div>
       </div>
     </div>
+       </Link>
   );
 }
