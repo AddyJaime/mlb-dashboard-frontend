@@ -21,8 +21,9 @@ export async function getAllStadiums(): Promise<Stadium[]> {
         capacity: item.capacity,
         yearOpen: item.year_open,
         imageUrl: item.image_url,
-        league: item.league
-
+        league: item.league,
+        description:item.description
+    
       }
     })
 
@@ -55,7 +56,16 @@ export async function getStadiumById(id: number): Promise<Stadium> {
       capacity: item.capacity,
       yearOpen: item.year_open,
       imageUrl: item.image_url,
-      league: item.league
+      league: item.league,
+      description: item.description,
+        latitude:item.latitude,
+        longitude: item.longitude,
+        leftFieldFt: item.left_field_ft,
+        centerFieldFt:item.center_field_ft,
+        rightFieldFt:item.right_field_ft,
+        totalGames:item.total_games,
+        homeWinPercentage:item.home_win_percentage,
+        perfectGames:item.perfect_games
     }
 
   } catch (error) {

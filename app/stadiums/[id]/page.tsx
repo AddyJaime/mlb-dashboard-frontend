@@ -1,4 +1,5 @@
 import { getStadiumById } from "@/services/services/stadium.service";
+import StadiumHero from "@/components/StadiumHero";
 
 export default async function StadiumDetailPage({
   params,
@@ -10,7 +11,17 @@ export default async function StadiumDetailPage({
 
   return (
     <main>
-      <h1 className="bg-amber-800">{stadium.city}</h1>
+      <StadiumHero
+      imageUrl={stadium.imageUrl}
+      name={stadium.name}
+      team={stadium.team}
+      league={stadium.league}
+      description={stadium.description}
+      city={stadium.city}
+      state={stadium.state}
+      capacity={stadium.capacity}
+      yearOpen={stadium.yearOpen}
+      />
     </main>
   );
 }
