@@ -21,6 +21,9 @@ export default async function StadiumDetailPage({
       state={stadium.state}
       capacity={stadium.capacity}
       yearOpen={stadium.yearOpen}
+      leftFieldFt={stadium.leftFieldFt}
+      centerFieldFt={stadium.centerFieldFt}
+      rightFieldFt={stadium.rightFieldFt}
       />
     </main>
   );

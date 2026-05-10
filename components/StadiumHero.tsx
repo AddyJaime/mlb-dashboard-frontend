@@ -1,6 +1,7 @@
 import Image from "next/image";
 import StadiumAbout from "./StadiumAbout";
 import StadiumInfo from "./StadiumInfo";
+import StadiumFieldDimensions from "./StadiumFieldDimensions";
 
 type StadiumHeroProps = {
   imageUrl: string;
@@ -12,7 +13,9 @@ type StadiumHeroProps = {
   state: string;
   capacity: number;
   yearOpen: number;
-
+    leftFieldFt: number;
+  centerFieldFt: number;
+  rightFieldFt: number;
 };
 
 export default function StadiumHero({
@@ -24,7 +27,10 @@ export default function StadiumHero({
   city,
   state,
   capacity,
-  yearOpen
+  yearOpen,
+  leftFieldFt,
+  centerFieldFt,
+  rightFieldFt
 }: StadiumHeroProps) {
   return (
     // py agregar espacio arriba y abajo
@@ -55,11 +61,14 @@ export default function StadiumHero({
         </div>
       </div>
       <div className="grid grid-cols-5 gap-10 px-6 mt-8 max-w-7xl mx-auto">
+        {/* columna izquierda — todos los compos van apilados aqui */}
         <div className="col-span-3 flex flex-col gap-6">
           <StadiumAbout description={description} />
+          <StadiumFieldDimensions leftFieldFt={leftFieldFt} centerFieldFt={centerFieldFt} rightFieldFt={rightFieldFt} />
         </div>
-        <div className="col-span-2 max-w-l" >
-          <StadiumInfo city={city} state={state} capacity={capacity} yearOpen={yearOpen} league={league}/>
+        {/* columna derecha */}
+        <div className="col-span-2">
+          <StadiumInfo city={city} state={state} capacity={capacity} yearOpen={yearOpen} league={league} />
         </div>
       </div>
     </div>
