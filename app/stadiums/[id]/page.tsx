@@ -1,4 +1,7 @@
-import { getStadiumById } from "@/services/services/stadium.service";
+import {
+  getStadiumById,
+  getStadiumAttendance,
+} from "@/services/services/stadium.service";
 import StadiumHero from "@/components/StadiumHero";
 
 export default async function StadiumDetailPage({
@@ -7,23 +10,30 @@ export default async function StadiumDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const stadium = await getStadiumById(Number(id));
 
+  const [stadium, attendance] = await Promise.all([
+    getStadiumById(Number(id)),
+    getStadiumAttendance(Number(id)),
+  ]);
   return (
     <main>
       <StadiumHero
-      imageUrl={stadium.imageUrl}
-      name={stadium.name}
-      team={stadium.team}
-      league={stadium.league}
-      description={stadium.description}
-      city={stadium.city}
-      state={stadium.state}
-      capacity={stadium.capacity}
-      yearOpen={stadium.yearOpen}
-      leftFieldFt={stadium.leftFieldFt}
-      centerFieldFt={stadium.centerFieldFt}
-      rightFieldFt={stadium.rightFieldFt}
+        imageUrl={stadium.imageUrl}
+        name={stadium.name}
+        team={stadium.team}
+        league={stadium.league}
+        description={stadium.description}
+        city={stadium.city}
+        state={stadium.state}
+        capacity={stadium.capacity}
+        yearOpen={stadium.yearOpen}
+        leftFieldFt={stadium.leftFieldFt}
+        centerFieldFt={stadium.centerFieldFt}
+        rightFieldFt={stadium.rightFieldFt}
+        totalGames={stadium.totalGames}
+        perfectGames={stadium.perfectGames}
+        homeWinPercentage={stadium.homeWinPercentage}
+        attendance={attendance}
       />
     </main>
   );

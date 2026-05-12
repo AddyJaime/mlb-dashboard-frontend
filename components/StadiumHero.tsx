@@ -2,6 +2,10 @@ import Image from "next/image";
 import StadiumAbout from "./StadiumAbout";
 import StadiumInfo from "./StadiumInfo";
 import StadiumFieldDimensions from "./StadiumFieldDimensions";
+import HistoricalStatistics from "./HistoricalStatistics";
+import StadiumVisit from "./StadiumVisit";
+import { Attendance } from "@/types/attendance";
+import AttendanceTrends from "./AttendanceTrends";
 
 type StadiumHeroProps = {
   imageUrl: string;
@@ -13,9 +17,13 @@ type StadiumHeroProps = {
   state: string;
   capacity: number;
   yearOpen: number;
-    leftFieldFt: number;
+  leftFieldFt: number;
   centerFieldFt: number;
   rightFieldFt: number;
+  totalGames: number;
+  perfectGames: number;
+  homeWinPercentage: number;
+  attendance: Attendance[]
 };
 
 export default function StadiumHero({
@@ -30,7 +38,11 @@ export default function StadiumHero({
   yearOpen,
   leftFieldFt,
   centerFieldFt,
-  rightFieldFt
+  rightFieldFt,
+  totalGames,
+  perfectGames,
+  homeWinPercentage,
+  attendance
 }: StadiumHeroProps) {
   return (
     // py agregar espacio arriba y abajo
@@ -64,11 +76,28 @@ export default function StadiumHero({
         {/* columna izquierda — todos los compos van apilados aqui */}
         <div className="col-span-3 flex flex-col gap-6">
           <StadiumAbout description={description} />
-          <StadiumFieldDimensions leftFieldFt={leftFieldFt} centerFieldFt={centerFieldFt} rightFieldFt={rightFieldFt} />
+          <StadiumFieldDimensions
+            leftFieldFt={leftFieldFt}
+            centerFieldFt={centerFieldFt}
+            rightFieldFt={rightFieldFt}
+          />
+          <HistoricalStatistics
+            totalGames={totalGames}
+            homeWinPercentage={homeWinPercentage}
+            perfectGames={perfectGames}
+          />
+          <StadiumVisit />
+          <AttendanceTrends attendance={attendance}/>
         </div>
         {/* columna derecha */}
         <div className="col-span-2">
-          <StadiumInfo city={city} state={state} capacity={capacity} yearOpen={yearOpen} league={league} />
+          <StadiumInfo
+            city={city}
+            state={state}
+            capacity={capacity}
+            yearOpen={yearOpen}
+            league={league}
+          />
         </div>
       </div>
     </div>

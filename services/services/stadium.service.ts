@@ -1,5 +1,6 @@
 // intermediario que habla con el front end para traer la data al front end 
 import { API_BASE_URL } from "@/config/api";
+import { Attendance } from "@/types/attendance";
 import { Stadium } from "@/types/stadium";
 import { StadiumAPI } from "@/types/stadium-api";
 
@@ -8,7 +9,7 @@ import { StadiumAPI } from "@/types/stadium-api";
 
 export async function getAllStadiums(): Promise<Stadium[]> {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/stadiums`, {next: {revalidate: 3600}})
+    const response = await fetch(`${API_BASE_URL}/api/stadiums`, { next: { revalidate: 3600 } })
     const data = await response.json()
 
     const stadiums = data.data.map((item: StadiumAPI) => {
@@ -22,8 +23,8 @@ export async function getAllStadiums(): Promise<Stadium[]> {
         yearOpen: item.year_open,
         imageUrl: item.image_url,
         league: item.league,
-        description:item.description
-    
+        description: item.description
+
       }
     })
 
@@ -58,18 +59,49 @@ export async function getStadiumById(id: number): Promise<Stadium> {
       imageUrl: item.image_url,
       league: item.league,
       description: item.description,
-        latitude:item.latitude,
-        longitude: item.longitude,
-        leftFieldFt: item.left_field_ft,
-        centerFieldFt:item.center_field_ft,
-        rightFieldFt:item.right_field_ft,
-        totalGames:item.total_games,
-        homeWinPercentage:item.home_win_percentage,
-        perfectGames:item.perfect_games
+      latitude: item.latitude,
+      longitude: item.longitude,
+      leftFieldFt: item.left_field_ft,
+      centerFieldFt: item.center_field_ft,
+      rightFieldFt: item.right_field_ft,
+      totalGames: item.total_games,
+      homeWinPercentage: item.home_win_percentage,
+      perfectGames: item.perfect_games
     }
 
   } catch (error) {
     console.error("Error fetching stadium:", error)
     throw new Error("Failed to fetch stadium")
   }
+}
+
+export async function getStadiumAttendance(id: number): Promise<Attendance[]> {
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/stadiums/${id}/attendance`)
+    const data = await response.json();
+
+    //  - Si el backend devuelve { data: { id: 1, name: 
+    // ... } } → usa data.data (el objeto adentro)       
+    // - Si el backend devuelve directo { id: 1, name: 
+    // ... } → data.data sería undefined, entonces usa   
+    // data completo   
+
+    // data.data es un array: [{year: 2021, total_attendance: 3000000}, {year: 2022, ...}, ...]
+    // .map() recorre cada elemento del array uno por uno — igual que un for loop pero devuelve un array nuevo
+    // por cada item (cada año), devolvemos un objeto nuevo con los campos que necesitamos
+    const attendances = data.data.map((item: Attendance) => {
+      return {
+        year: item.year,
+        total_attendance: item.total_attendance
+      }
+    })
+
+    // retornamos el array transformado al componente que lo pidió
+    return attendances
+  } catch (error) {
+    console.error("Error fetching stadium:", error)
+    throw new Error("Failed to fetch stadium")
+  }
+
 }

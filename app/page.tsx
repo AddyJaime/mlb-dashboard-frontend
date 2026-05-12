@@ -3,6 +3,7 @@ import StadiumGrid from "@/components/StadiumGrid";
 import { getAllStadiums } from "@/services/services/stadium.service";
 export default async function Home() {
   const stadiums = await getAllStadiums();
+  
 
   return (
     <main className="p-10">
