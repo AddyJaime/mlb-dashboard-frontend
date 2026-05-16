@@ -1,3 +1,5 @@
+
+
 import Image from "next/image";
 import StadiumAbout from "./StadiumAbout";
 import StadiumInfo from "./StadiumInfo";
@@ -6,6 +8,7 @@ import HistoricalStatistics from "./HistoricalStatistics";
 import StadiumVisit from "./StadiumVisit";
 import { Attendance } from "@/types/attendance";
 import AttendanceTrends from "./AttendanceTrends";
+import StadiumLocation from "./StadiumLocation";
 
 type StadiumHeroProps = {
   imageUrl: string;
@@ -23,7 +26,9 @@ type StadiumHeroProps = {
   totalGames: number;
   perfectGames: number;
   homeWinPercentage: number;
-  attendance: Attendance[]
+  attendance: Attendance[];
+  latitude: number;
+  longitude: number;
 };
 
 export default function StadiumHero({
@@ -42,7 +47,9 @@ export default function StadiumHero({
   totalGames,
   perfectGames,
   homeWinPercentage,
-  attendance
+  attendance,
+  latitude,
+  longitude
 }: StadiumHeroProps) {
   return (
     // py agregar espacio arriba y abajo
@@ -98,6 +105,8 @@ export default function StadiumHero({
             yearOpen={yearOpen}
             league={league}
           />
+          <StadiumLocation latitude={latitude} longitude={longitude} />
+          
         </div>
       </div>
     </div>

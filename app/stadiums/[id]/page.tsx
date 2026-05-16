@@ -34,6 +34,8 @@ export default async function StadiumDetailPage({
         perfectGames={stadium.perfectGames}
         homeWinPercentage={stadium.homeWinPercentage}
         attendance={attendance}
+        latitude={stadium.latitude}
+        longitude={stadium.longitude}
       />
     </main>
   );

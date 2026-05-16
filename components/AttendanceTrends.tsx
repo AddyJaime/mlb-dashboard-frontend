@@ -25,7 +25,8 @@ export default function AttendanceTrends({attendance}:AttendanceTrendsProps){
       <CartesianGrid/>
       {/* tickFormatter convierte el número crudo a formato M — ej: 3000000 → 3.0M */}
       <YAxis tickFormatter={(value) => `${(value / 1000000).toFixed(1)}M`}/>
-      {/* formatter le da formato con comas al valor en el tooltip — ej: 3000000 → 3,000,000 */}
+        {/* to fix aqui se usa psrs mdotrar 3.0 numero y decimal  */}
+      {/* aqui el numero llega como string y se convierte a numero */}
       <Tooltip formatter={(value) => Number(value).toLocaleString()}/>
       </BarChart> 
 

@@ -10,6 +10,11 @@ import { StadiumAPI } from "@/types/stadium-api";
 export async function getAllStadiums(): Promise<Stadium[]> {
   try {
     const response = await fetch(`${API_BASE_URL}/api/stadiums`, { next: { revalidate: 3600 } })
+
+    if (!response.ok) {
+      throw new Error('Stadiums not found')
+    }
+
     const data = await response.json()
 
     const stadiums = data.data.map((item: StadiumAPI) => {
@@ -42,8 +47,14 @@ export async function getAllStadiums(): Promise<Stadium[]> {
 export async function getStadiumById(id: number): Promise<Stadium> {
   // y ese stadium ahi es la promessa que espera el frontend 
   try {
-    const response = await fetch(`${API_BASE_URL}/api/stadiums/${id}`)
-    const data = await response.json()
+    const response = await fetch(`${API_BASE_URL}/api/stadiums/${id}`, {next:{revalidate: 3600}})
+    
+    if (!response.ok) {
+      throw new Error(`Stadium not found`) //status 404 este recurso no existe,
+      //entra al catch con un error claro
+    }
+    const data = await response.json() //solo llega aqui si fue 200
+
     // Si el API envuelve la respuesta en { data: ... } usa data.data, si no, usa data directo, el stadiumAPi es el tipo de como vienen los datos del backend 
     const item: StadiumAPI = data.data ?? data
 
@@ -78,8 +89,14 @@ export async function getStadiumById(id: number): Promise<Stadium> {
 export async function getStadiumAttendance(id: number): Promise<Attendance[]> {
 
   try {
-    const response = await fetch(`${API_BASE_URL}/api/stadiums/${id}/attendance`)
+    const response = await fetch(`${API_BASE_URL}/api/stadiums/${id}/attendance`, {next: {revalidate: 3600}})
+
+    if (!response.ok) {
+      throw new Error("Stadium Attendance not available")
+    }
+
     const data = await response.json();
+    console.log(data)
 
     //  - Si el backend devuelve { data: { id: 1, name: 
     // ... } } → usa data.data (el objeto adentro)       
