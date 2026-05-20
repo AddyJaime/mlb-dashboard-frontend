@@ -139,14 +139,14 @@ export default function CompareView() {
           {/* STADIUM IMAGES */}
           <div className="grid grid-cols-2 gap-4 mb-6">
             <div className="relative rounded-xl overflow-hidden h-52">
-              <Image src={`http://localhost:3000${stadium1.imageUrl}`} alt={stadium1.name} fill className="object-cover" />
+              <Image src={stadium1.imageUrl} alt={stadium1.name} fill className="object-cover" />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
                 <p className="text-white font-bold text-lg">{stadium1.name}</p>
                 <p className="text-white/80 text-sm">{stadium1.team}</p>
               </div>
             </div>
             <div className="relative rounded-xl overflow-hidden h-52">
-              <Image src={`http://localhost:3000${stadium2.imageUrl}`} alt={stadium2.name} fill className="object-cover" />
+              <Image src={stadium2.imageUrl} alt={stadium2.name} fill className="object-cover" />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
                 <p className="text-white font-bold text-lg">{stadium2.name}</p>
                 <p className="text-white/80 text-sm">{stadium2.team}</p>
