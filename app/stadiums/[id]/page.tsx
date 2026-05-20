@@ -4,8 +4,6 @@ import {
 } from "@/services/services/stadium.service";
 import StadiumHero from "@/components/StadiumHero";
 
-export const revalidate = 3600;
-
 export default async function StadiumDetailPage({
   params,
 }: {

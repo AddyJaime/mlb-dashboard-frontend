@@ -14,7 +14,7 @@
 //   contenedores ya están corriendo y el fetch
 //   funciona.
 
- export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 
 import HeroSection from "@/components/hero-section";
