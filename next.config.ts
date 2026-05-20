@@ -17,10 +17,7 @@ const nextConfig: NextConfig = {
         destination: `${BACKEND_URL}/api/:path*`,
         
       },
-      {
-        source: "/images/:path*",
-        destination: `${BACKEND_URL}/images/:path*`
-      }
+    
       
     ];
   },
