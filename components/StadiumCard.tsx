@@ -17,7 +17,7 @@ export default function StadiumCard({ stadium, isFirst }: StadiumCardProps) {
       <div className="relative h-64" suppressHydrationWarning>
         {/* contenedor con altura fija (controla tamaño de la imagen) */}
         <Image
-          src={`http://localhost:3000${stadium.imageUrl}`}
+          src={stadium.imageUrl}
           placeholder="blur"
           blurDataURL="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5
   BAEAAAAALAAAAAABAAEAAAIBRAA7" 

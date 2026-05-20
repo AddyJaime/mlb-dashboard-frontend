@@ -59,7 +59,7 @@ export default function StadiumHero({
         {/* relative para que el gradiente y el texto se posicionen dentro de la imagen */}
         <div className="relative h-[450px] rounded-2xl overflow-hidden">
           <Image
-            src={`http://localhost:3000${imageUrl}`}
+            src={imageUrl}
             fill
             alt="Stadium hero image"
             className="object-cover"
