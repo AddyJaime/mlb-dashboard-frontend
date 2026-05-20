@@ -13,7 +13,10 @@
 //   una petición real." Para entonces todos los
 //   contenedores ya están corriendo y el fetch
 //   funciona.
-export const dynamic = 'force-dynamic';
+
+ export const revalidate = 3600;
+
+
 import HeroSection from "@/components/hero-section";
 import StadiumGrid from "@/components/StadiumGrid";
 import { getAllStadiums } from "@/services/services/stadium.service";
