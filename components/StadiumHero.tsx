@@ -62,6 +62,7 @@ export default function StadiumHero({
             src={imageUrl}
             fill
             alt="Stadium hero image"
+            priority
             className="object-cover"
           />
 
